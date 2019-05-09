@@ -11,6 +11,20 @@
   <small>O app de planejamento financeiro pessoal</small>
   <br/>
   <ion-button size='small' [routerLink]="['/novo-plano']">Criar plano financeiro </ion-button>
+  <div *ngIf="planejamentos.length == 0">
+    <p>Você não cadastrou nenhum planejamento!</p>
+  </div>
+  <div *ngFor="let planejamento of planejamentos">
+    <ion-card>
+     <ion-card-header>
+       <h2>{{planejamento.nome}}</h2>
+     </ion-card-header>
+     <ion-card-content>
+      <p>{{planejamento.custoMensal}}</p> 
+      {{planejamento.faturamentoMensal}}
+     </ion-card-content>
+    </ion-card>
+  </div>
 
 
 </ion-content>
