@@ -21,7 +21,11 @@
      </ion-card-header>
      <ion-card-content>
       <p>{{planejamento.custoMensal}}</p> 
-      {{planejamento.faturamentoMensal}}
+
+      <p>{{planejamento.faturamentoMensal}}</p>
+      <div style='display: flex; justify-content: flex-end;'>
+        <ion-button (click)="excluir(planejamento.nome)" color="danger" size='small' fill='outline'>Excluir</ion-button></div>
+      
      </ion-card-content>
     </ion-card>
   </div>
