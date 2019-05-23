@@ -27,23 +27,39 @@ export class HomePage {
 
   }
   //await força o fluxo a parar ...create é um metodo , alertTemp é minha variavel//
-  async exibirAlertaDeExclusao () {
+  async exibirAlertaDeExclusao (nomeDoPlano) {
     const alertTemp = await this.alert.create({
       header: 'Exclusão de plano',
-      subHeader:'Deseja realmente excluir esse plano?',
-    message:''
+      subHeader:'Deseja realmente excluir esse plano?' + nomeDoPlano + '?',
+    message:'',
+    buttons:[{
+      text:'Cancelar',
+      handler: function(){
+        console.log("Clicou no cancelar")
+      }
+    },{
+      text:"Ecluir",
+      handler: ()=>{
+        sessionStorage.removeItem(nomeDoPlano)
+        this.listar()
+
+      }
+    }]
     })
     await alertTemp.present()
 
   }
+  //metodo excluir//
   excluir(nomeDoPlano){
-    this.exibirAlertaDeExclusao()
+    this.exibirAlertaDeExclusao(nomeDoPlano)
     //sessionStorage.removeItem(nomeDoPlano)
     //this.listar()
     
 
   }
 
+ 
+  
   //carrega primeiro,executa tudo de novo: ionViewDidEnter//
   ionViewDidEnter(){
     this.listar()
