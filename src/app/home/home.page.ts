@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +9,9 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  constructor(private alert: AlertController){
+  constructor(private alert: AlertController,
+    private router: Router,
+    ){
 
   }
   planejamentos = []
@@ -57,10 +60,18 @@ export class HomePage {
     
 
   }
+  //essa funç]ao sera executada cuando sera exexutada quando for clicada em 
+  irParaDetalhes(nomeDoPlano){
+    this.router.navigate(['/plano-detalhe', nomeDoPlano])
 
+
+  }
  
-  
-  //carrega primeiro,executa tudo de novo: ionViewDidEnter//
+    editar(nomeDoPlano){
+      this.router.navigate(['/editar-plano', nomeDoPlano])
+
+    }
+  //Esxecuta primeiro.carrega primeiro,executa tudo de novo: ionViewDidEnter//
   ionViewDidEnter(){
     this.listar()
    
